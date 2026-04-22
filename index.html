@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Czy Emil już przyniósł ciasto?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff7ed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .number {
+      font-size: 64px;
+      font-weight: bold;
+    }
+    .small {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Emil nie przyniósł ciasta od:</h1>
+  <div class="number" id="days">0</div>
+  <div>dni</div>
+  <div class="number" id="hours">0</div>
+  <div>godzin</div>
+  <p class="small">Od 11.10.2025</p>
+</div>
+
+<script>
+  const startDate = new Date("2025-10-11T00:00:00+02:00");
+
+  function updateCounter() {
+    const now = new Date();
+    const diffMs = now - startDate;
+    if (diffMs < 0) return;
+
+    const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+    document.getElementById("days").textContent = Math.floor(totalHours / 24);
+    document.getElementById("hours").textContent = totalHours % 24;
+  }
+
+  updateCounter();
+  setInterval(updateCounter, 60000);
+</script>
+
+</body>
+</html>
+``
